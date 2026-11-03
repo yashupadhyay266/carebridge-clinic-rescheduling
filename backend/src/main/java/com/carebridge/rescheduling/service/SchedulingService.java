@@ -206,7 +206,7 @@ public class SchedulingService {
         slots.save(old);
         appointments.save(appointment);
         suggestions.save(suggestion);
-        return Map.of("id", id, "status", "ACCEPTED");
+        return Map.of("id", id, "status", "RESCHEDULED");
     }
 
     @Async
