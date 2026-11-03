@@ -51,3 +51,13 @@ npm run build
 ```
 
 The PostgreSQL-backed locking and concurrent-booking behavior should also be exercised against the PostgreSQL service started by Docker Compose before production deployment.
+
+For the opt-in PostgreSQL integration suite, start the database and run:
+
+```bash
+docker compose up -d postgres
+cd backend
+mvn -Ppostgres-integration -Duser.timezone=UTC test
+```
+
+The integration suite verifies concurrent booking of one slot, concurrent retries with the same idempotency key, rollback after a rejected booking, PostgreSQL pessimistic-lock behavior through the service, and the partial unique index that prevents multiple active appointments from using one slot. It is named with the `IT` suffix and is opt-in so a normal `mvn test` remains usable without a local database.

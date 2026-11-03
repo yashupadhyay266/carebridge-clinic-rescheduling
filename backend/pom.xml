@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>17</java.version>
+        <test.includes>**/*Test.java</test.includes>
+        <test.excludes>**/*IT.java</test.excludes>
     </properties>
 
     <dependencies>
@@ -55,6 +57,12 @@
                 <version>3.2.5</version>
                 <configuration>
                     <argLine>-Dnet.bytebuddy.experimental=true</argLine>
+                    <includes>
+                        <include>${test.includes}</include>
+                    </includes>
+                    <excludes>
+                        <exclude>${test.excludes}</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -63,4 +71,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>postgres-integration</id>
+            <properties>
+                <test.includes>**/*IT.java</test.includes>
+                <test.excludes></test.excludes>
+            </properties>
+        </profile>
+    </profiles>
 </project>
