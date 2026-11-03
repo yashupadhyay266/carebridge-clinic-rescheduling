@@ -1,0 +1,2 @@
+ALTER TABLE suggestions
+    ADD COLUMN recommendation_source VARCHAR(30) NOT NULL DEFAULT 'RULE_BASED_FALLBACK';
